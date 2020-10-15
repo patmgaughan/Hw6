@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<head>
+	<title>Amicable Numbers</title>
+	<script language="javascript">
+
+		function isFactor(num, factor){
+
+			if(num == factor){
+				return false;
+			}
+			
+			n = parseInt(num) / parseInt(factor);
+			nInt = parseInt(n);
+
+			if(nInt == n){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		function showArray(array){
+			mydiv = document.getElementById("answer");
+			string = JSON.stringify(array);
+			mydiv.innerHTML += string;
+			mydiv.innerHTML += "<br>";
+		}
+
+		function addArray(array){
+			length = array.length;
+
+			sum = 0;
+
+			for(i = 0; i<length; i++){
+				sum += array[i];
+			}
+
+			return sum;
+
+		}
+
+		function getFactors(num){
+			array = new Array;
+
+			for(i = 1; i < num; i++){
+				if(isFactor(num, i)){
+					array.push(parseInt(i));
+				}
+			}
+
+			return array;
+		}
+
+		/*isFactor test code*/
+
+		// if(isFactor(5, 2) != false){
+		// 	alert("ERROR: 2 not factor of 5");
+		// }
+		// if(isFactor(4, 4) != false){
+		// 	alert("ERROR: 4 not factor of 4");
+		// }
+		// if(isFactor(4, 2) != true){
+		// 	alert("ERROR: 2 is factor of 5");
+		// }
+		// if(isFactor(10, 5) != true){
+		// 	alert("ERROR: 2 is factor of 5");
+		// }
+		// if(isFactor(10, 5) != true){
+		// 	alert("ERROR: 2 is factor of 5");
+		// }
+		// if(isFactor(-200, 20) != true){
+		// 	alert("ERROR: 20 is factor of -200");
+		// }
+
+		/*isFactor test code*/
+
+
+
+
+		/*addArray test code*/
+
+		// array = [9, 9, 9, 9, 9];
+		// if(addArray(array) != 45){
+		// 	alert("Sum of " + array + "is not " + addArray(array) + "\n");
+		// }
+		// array = [0];
+		// if(addArray(array) != 0){
+		// 	alert("Sum of " + array + "is not " + addArray(array) + "\n");
+		// }
+		// array = [78, 68, 988, 567];
+		// if(addArray(array) != (78 + 68 + 988 + 567)){
+		// 	alert("Sum of " + array + "is not " + addArray(array) + "\n");
+		// }
+		// array = [78, -68, 988, -567];
+		// if(addArray(array) != (78 - 68 + 988 - 567)){
+		// 	alert("Sum of " + array + "is not " + addArray(array) + "\n");
+		// }
+
+		/*addArray test code*/
+
+		/*getFactors test code*/
+
+		// factors220 = getFactors(220);
+		// array220 = [1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110];
+		// if(JSON.stringify(factors220) != JSON.stringify(array220)){
+		// 	alert("ERROR: 220's factors are not " + factors220 + "\n");
+		// }
+		// factors284 = getFactors(284);
+		// array284 = [1, 2, 4, 71, 142];
+		// if(JSON.stringify(factors284) != JSON.stringify(array284)){
+		// 	alert("ERROR: 284's factors are not " + factors284 + "\n");
+		// }
+
+		/*getFactors test code*/
+
+		function showButton(){
+			a = document.getElementById("num1").value;
+			b = document.getElementById("num2").value;
+			mydiv = document.getElementById("answer");
+			mydiv.innerHTML = "";
+
+			aFactors = getFactors(a);
+			bFactors = getFactors(b);
+
+			string = "Factors of " + a + " are ";
+			mydiv.innerHTML += string;
+			showArray(aFactors);
+
+			string = "Factors of " + b + " are ";
+			mydiv.innerHTML += string;
+			showArray(bFactors);
+
+
+			aFactorsSum = addArray(aFactors);
+			bFactorsSum = addArray(bFactors);
+
+			string = "Sum of factors of " + a + " is " + aFactorsSum + "<br>";
+			mydiv.innerHTML += string;
+			string = "Sum of factors of " + b + " is " + bFactorsSum + "<br>";
+			mydiv.innerHTML += string;
+
+
+			if( (b == aFactorsSum) && (a == bFactorsSum) ){
+				mydiv.innerHTML += "Amicable!!!<br>";
+			}else{
+				mydiv.innerHTML += "Not Amicable :(<br>";
+			}
+
+
+			/*showArray test code*/
+			
+			// array = [6, 8, 9, 6];
+			// showArray(array);
+			// array = [6, 7, 9, 9];
+			// showArray(array);
+			// array = [0];
+			// showArray(array);
+			// array = [0, 7 , 89, 65, 34, 988];
+			// showArray(array);
+
+			/*showArray test code*/
+		}
+
+
+		window.onload = function() {
+
+			b1 = document.getElementById("button1")
+			b1.onclick = function(){
+				showButton();
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+	<h1>Amicable</h1>
+
+	<form>
+
+		<input type="text" value="220" id="num1">
+		<input type="text" value="284" id="num2">
+		<input type="button" value="Submit" id="button1">
+
+	</form>
+
+	<div id="answer">&nbsp;</div>
+
+</body>
+
+
+
+
+
